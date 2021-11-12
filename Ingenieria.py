@@ -5,6 +5,7 @@ import plotly_express as px
 import pandas as pd
 from PIL import Image
 import sqlite3
+import numpy as np
 conn = sqlite3.connect('data.db')
 c = conn.cursor()
 
@@ -34,6 +35,7 @@ def lectura_archivo():
         print(archivo_cargado)
         try:
             datos = pd.read_csv(archivo_cargado)
+            datos = datos.replace(np.nan,0)
         except Exception as e:
             st.subheader("TABLA CECYTEM: ")
             print(e)
